@@ -57,6 +57,13 @@ module Pod
           super
         end
 
+        def validate!
+          super
+          unless @name
+            help! "Updating a spec-repo needs a `NAME`."
+          end
+        end
+
         def run
           update(@name, true) #todo: dusty
         end
