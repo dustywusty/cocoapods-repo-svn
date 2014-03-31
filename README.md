@@ -4,7 +4,7 @@ Adds subversion support to manage spec-repositories
 
 ## Brief
 
-Our team had been using a in house fork of Cocoapods with svn, bzr, and hg spec-repo support. Since #1747 has been closed, I'm moving that code into plugins.
+Our team had been using a in house fork of Cocoapods with svn, bzr, and hg spec-repo support. Since #1747 has been closed, I'm porting that code to plugins
 
 ## Installation
 
