@@ -1,5 +1,4 @@
 require 'fileutils'
-require 'cocoapods/sources_manager'
 
 module Pod
   class Command
@@ -9,7 +8,7 @@ module Pod
       self.summary = 'Manage spec-repositories using subversion'
 
       class Add < RepoSvn
-        self.summary = 'Add a spec repo using svn.'
+        self.summary = 'Add a spec-repo using svn.'
 
         self.description = <<-DESC
           Check out `URL` in the local spec-repos directory at `~/.cocoapods/repos/`. The
@@ -26,12 +25,12 @@ module Pod
         def validate!
           super
           unless @name && @url
-            help! "Adding a repo needs a `NAME` and a `URL`."
+            help! "Adding a spec-repo needs a `NAME` and a `URL`."
           end
         end
 
         def run
-          UI.section("Checking out svn spec repo `#{@name}` from `#{@url}`") do
+          UI.section("Checking out spec-repo `#{@name}` from `#{@url}` using svn") do
             config.repos_dir.mkpath
             Dir.chdir(config.repos_dir) do
               command = "checkout --non-interactive --trust-server-cert '#{@url}' #{@name}"
@@ -45,11 +44,10 @@ module Pod
       #-----------------------------------------------------------------------#
 
       class Update < RepoSvn
-        self.summary = 'Update a svn spec repo.'
+        self.summary = 'Update a svn spec-repo.'
 
         self.description = <<-DESC
-          Updates the local clone of the spec-repo `NAME`. If `NAME` is omitted
-          this will update all spec-repos in `~/.cocoapods/repos`.
+          Updates the checked out spec-repo `NAME`.
         DESC
 
         self.arguments = '[NAME]'
@@ -85,13 +83,13 @@ module Pod
         def update(source_name = nil, show_output = false)
           if source_name
             specified_source = SourcesManager.aggregate.all.find { |s| s.name == source_name }
-            raise Informative, "Unable to find the `#{source_name}` repo."    unless specified_source
-            raise Informative, "The `#{source_name}` repo is not a svn repo." unless svn_repo?(specified_source.data_provider.repo)
+            raise Informative, "Unable to find the `#{source_name}` spec-repo."    unless specified_source
+            raise Informative, "The `#{source_name}` repo is not a svn spec-repo." unless svn_repo?(specified_source.data_provider.repo)
             sources = [specified_source]
           end
 
           sources.each do |source|
-            UI.section "Updating spec repo `#{source.name}`" do
+            UI.section "Updating spec-repo `#{source.name}`" do
               Dir.chdir(source.data_provider.repo) do
                 output = svn!('up --non-interactive --trust-server-cert')
                 UI.puts output if show_output && !config.verbose?
@@ -116,7 +114,7 @@ module Pod
 
       #-----------------------------------------------------------------------#
 
-      # Verbatim Repo->Lint
+      # ~Verbatim Repo->Lint
       #
       # Original contributors:
       #
@@ -195,7 +193,7 @@ module Pod
 
       #-----------------------------------------------------------------------#
 
-      # Verbatim Repo->Remove
+      # ~Verbatim Repo->Remove
       #
       # Original contributors:
       #
@@ -242,4 +240,3 @@ module Pod
     end
   end
 end
-
