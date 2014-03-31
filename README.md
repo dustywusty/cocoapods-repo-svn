@@ -23,7 +23,20 @@ Update
 Remove
 
     $ pod repo-svn remove my-svn-repo 
+
     
+## Contributing
+    
+..
+
+## Building
+
+    $ rake build
+    
+## Installing
+
+    $ rake install
+
     
 ## Thoughts
 
