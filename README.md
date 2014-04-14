@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/cocoapods-repo-svn.svg)](http://badge.fury.io/rb/cocoapods-repo-svn)
+
 # Cocoapods::RepoSvn
 
 Adds subversion support to manage spec-repositories
