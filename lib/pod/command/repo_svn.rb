@@ -15,7 +15,10 @@ module Pod
           remote can later be referred to by `NAME`.
         DESC
 
-        self.arguments = 'NAME URL'
+        self.arguments = [
+            CLAide::Argument.new('URL', true),
+            CLAide::Argument.new('NAME', true)
+        ]
 
         def initialize(argv)
           @name, @url = argv.shift_argument, argv.shift_argument
@@ -50,7 +53,9 @@ module Pod
           Updates the checked out spec-repo `NAME`.
         DESC
 
-        self.arguments = '[NAME]'
+        self.arguments = [
+            CLAide::Argument.new('NAME', true),
+        ]
 
         def initialize(argv)
           @name = argv.shift_argument
@@ -141,7 +146,9 @@ module Pod
           will lint all the spec-repos known to CocoaPods.
         DESC
 
-        self.arguments = '[ NAME | DIRECTORY ]'
+        self.arguments = [
+            CLAide::Argument.new(%w(NAME DIRECTORY), true),
+        ]
 
         def self.options
           [["--only-errors", "Lint presents only the errors"]].concat(super)
@@ -216,7 +223,9 @@ module Pod
           Deletes the checked out copy named `NAME` from the local spec-repos directory at `~/.cocoapods/repos/.`
         DESC
 
-        self.arguments = 'NAME'
+        self.arguments = [
+            CLAide::Argument.new('NAME', true),
+        ]
 
         def initialize(argv)
           @name = argv.shift_argument
