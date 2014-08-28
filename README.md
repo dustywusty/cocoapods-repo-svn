@@ -1,4 +1,5 @@
 [![Gem Version](https://badge.fury.io/rb/cocoapods-repo-svn.svg)](http://badge.fury.io/rb/cocoapods-repo-svn)
+[![Code Climate](https://codeclimate.com/github/clarkda/cocoapods-repo-svn/badges/gpa.svg)](https://codeclimate.com/github/clarkda/cocoapods-repo-svn)
 
 # Cocoapods::RepoSvn
 
