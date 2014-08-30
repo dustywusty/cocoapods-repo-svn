@@ -54,7 +54,7 @@ module Pod
         DESC
 
         self.arguments = [
-            CLAide::Argument.new('NAME', true),
+            CLAide::Argument.new('NAME', true)
         ]
 
         def initialize(argv)
@@ -147,7 +147,7 @@ module Pod
         DESC
 
         self.arguments = [
-            CLAide::Argument.new(%w(NAME DIRECTORY), true),
+            CLAide::Argument.new(%w(NAME DIRECTORY), true)
         ]
 
         def self.options
@@ -224,7 +224,7 @@ module Pod
         DESC
 
         self.arguments = [
-            CLAide::Argument.new('NAME', true),
+            CLAide::Argument.new('NAME', true)
         ]
 
         def initialize(argv)
