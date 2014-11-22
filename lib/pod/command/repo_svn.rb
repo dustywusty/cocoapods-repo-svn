@@ -112,6 +112,23 @@ module Pod
 
         end
 
+        # @return [Source] The svn source with the given name. If no svn source
+        #         with given name is found it raises.
+        #
+        # @param  [String] name
+        #         The name of the source.
+        #
+        def svn_source_named(name)
+          specified_source = SourcesManager.aggregate.sources.find { |s| s.name == name }
+          unless specified_source
+            raise Informative, "Unable to find the `#{name}` repo."
+          end
+          unless svn_repo?(specified_source.repo)
+            raise Informative, "The `#{name}` repo is not a svn repo."
+          end
+          specified_source
+        end
+
         # @return [Source] The list of the svn sources.
         #
         def svn_sources
