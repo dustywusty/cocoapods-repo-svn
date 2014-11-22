@@ -93,21 +93,30 @@ module Pod
         # @return [void]
         #
         def update(source_name = nil, show_output = false)
-          if source_name
-            specified_source = SourcesManager.aggregate.all.find { |s| s.name == source_name }
-            raise Informative, "Unable to find the `#{source_name}` spec-repo."    unless specified_source
-            raise Informative, "The `#{source_name}` repo is not a svn spec-repo." unless svn_repo?(specified_source.data_provider.repo)
-            sources = [specified_source]
-          end
+          # if source_name
+          #   specified_source = SourcesManager.aggregate.all.find { |s| s.name == source_name }
+          #   raise Informative, "Unable to find the `#{source_name}` spec-repo."    unless specified_source
+          #   raise Informative, "The `#{source_name}` repo is not a svn spec-repo." unless svn_repo?(specified_source.data_provider.repo)
+          #   sources = [specified_source]
+          # end
+          #
+          # sources.each do |source|
+          #   UI.section "Updating spec-repo `#{source.name}`" do
+          #     Dir.chdir(source.data_provider.repo) do
+          #       output = svn!('up --non-interactive --trust-server-cert')
+          #       UI.puts output if show_output && !config.verbose?
+          #     end
+          #     SourcesManager.check_version_information(source.data_provider.repo) #todo: test me
+          #   end
+          # end
 
-          sources.each do |source|
-            UI.section "Updating spec-repo `#{source.name}`" do
-              Dir.chdir(source.data_provider.repo) do
-                output = svn!('up --non-interactive --trust-server-cert')
-                UI.puts output if show_output && !config.verbose?
-              end
-              SourcesManager.check_version_information(source.data_provider.repo) #todo: test me
-            end
+        end
+
+        # @return [Source] The list of the svn sources.
+        #
+        def svn_sources
+          SourcesManager.all.select do |source|
+            svn_repo?(source.repo)
           end
         end
 
