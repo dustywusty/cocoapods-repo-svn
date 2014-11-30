@@ -3,7 +3,7 @@ include CLAide::InformativeError
 
 module Pod
   describe Command::RepoSvn::Update do
-    it 'registers itself' do
+    it 'returns the proper command class' do
       Command.parse(%w( repo-svn update )).should.be.instance_of Command::RepoSvn::Update
     end
 

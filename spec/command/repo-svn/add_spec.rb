@@ -2,7 +2,7 @@ require File.expand_path('../../../spec_helper', __FILE__)
 
 module Pod
   describe Command::RepoSvn::Add do
-    it 'registers itself' do
+    it 'returns the proper command class' do
       Command.parse(%w( repo-svn add )).should.be.instance_of Command::RepoSvn::Add
     end
 
