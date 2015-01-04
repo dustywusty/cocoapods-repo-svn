@@ -16,8 +16,8 @@ module Pod
         DESC
 
         self.arguments = [
-            CLAide::Argument.new('URL', true),
-            CLAide::Argument.new('NAME', true)
+            CLAide::Argument.new('NAME', true),
+            CLAide::Argument.new('URL', true)
         ]
 
         def initialize(argv)
