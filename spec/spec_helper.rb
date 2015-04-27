@@ -10,6 +10,8 @@ require 'cocoapods'
 
 require 'cocoapods_plugin'
 
+
+require 'spec_helper/temporary_repos'
 #-----------------------------------------------------------------------------#
 
 module Pod
