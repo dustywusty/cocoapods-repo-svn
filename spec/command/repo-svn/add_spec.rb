@@ -6,10 +6,6 @@ module Pod
   describe Command::RepoSvn::Add do
     extend SpecHelper::TemporaryRepos
 
-    before do
-      set_up_test_repo
-    end
-
     it 'returns the proper command class' do
       Command.parse(%w( repo-svn add )).should.be.instance_of Command::RepoSvn::Add
     end
@@ -20,7 +16,8 @@ module Pod
     end
 
     it 'adds a svn spec repo' do
-
+      set_up_test_repo
+      puts tmp_svn_path
     end
   end
 end
