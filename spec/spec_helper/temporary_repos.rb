@@ -1,8 +1,3 @@
-
-#
-# https://github.com/CocoaPods/CocoaPods/blob/master/spec/spec_helper/temporary_repos.rb
-#
-
 module SpecHelper
   def self.tmp_repos_path
     TemporaryRepos.tmp_repos_path
@@ -12,42 +7,34 @@ module SpecHelper
     extend Pod::Executable
     executable :svn
 
-    #
-    # Copy test-repo to temp location and initialize local svn repository
-    #
-    def make_svn_repo(name)
-      path = repo_path(name)
-      path.mkpath
-      Dir.chdir(path) do
-        `echo stuff`
-      end
-      path
+    # ..
+
+    def make_svn_repo
+      return unless !File.directory?(tmp_svn_path)
+        `svnadmin create #{tmp_svn_path}`
+        `svn import #{tmp_repos_path} file://#{tmp_svn_path} -m "import"`
     end
 
-    #
-    # @return [Pathname] The path for the repo with the given name.
-    #
-    def repo_path(name)
-      tmp_repos_path + name
-    end
+    # ..
 
-    # Sets up a lightweight svn master repo in `tmp/cocoapods/repos/master` with the
-    # contents of `spec/fixtures/spec-repos/test_repo`.
-    #
-    def set_up_test_repo
-      puts "Set up tst repo!"
-        require 'fileutils'
+    def set_up_test_repo()
         tmp_repos_path.mkpath
         origin = ROOT + 'spec/fixtures/spec-repos/test-repo/'
-        destination = tmp_repos_path + 'master'
+        destination = tmp_repos_path
         FileUtils.cp_r(origin, destination)
-        make_svn_repo('master')
+        make_svn_repo
     end
 
-    #--------------------------------------#
+    # ..
 
     def tmp_repos_path
-      SpecHelper.temporary_directory + 'cocoapods/repos'
+      SpecHelper.temporary_directory + 'cocoapods/repos/master'
+    end
+
+    # ..
+
+    def tmp_svn_path
+      SpecHelper.temporary_directory + 'svn'
     end
 
     module_function :tmp_repos_path
