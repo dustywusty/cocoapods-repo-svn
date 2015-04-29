@@ -4,6 +4,7 @@ $LOAD_PATH.unshift((ROOT + 'spec').to_s)
 
 require 'bundler/setup'
 require 'bacon'
+require 'fileutils'
 require 'mocha-on-bacon'
 require 'pretty_bacon'
 require 'cocoapods'
