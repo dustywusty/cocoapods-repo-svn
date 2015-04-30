@@ -14,6 +14,7 @@ module Pod
 
     it 'updates a repository' do
       #
+      puts tmp_svn_path
     end
   end
 end

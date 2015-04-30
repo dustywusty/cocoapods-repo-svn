@@ -4,6 +4,7 @@ require File.expand_path('../../../spec_helper', __FILE__)
 
 module Pod
   describe Command::RepoSvn::Add do
+    extend SpecHelper::Command
     extend SpecHelper::TemporaryRepos
 
     it 'returns the proper command class' do
