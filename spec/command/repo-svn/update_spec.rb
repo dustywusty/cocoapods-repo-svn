@@ -12,9 +12,8 @@ module Pod
       lambda { command.validate! }.should.raise CLAide::InformativeError
     end
 
-    it 'updates a repository' do
-      #
-      puts tmp_svn_path
-    end
+    # it 'updates a repository' do
+    #   #
+    # end
   end
 end
