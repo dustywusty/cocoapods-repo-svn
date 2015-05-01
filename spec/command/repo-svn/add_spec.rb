@@ -19,6 +19,7 @@ module Pod
     it 'adds a svn spec repo' do
       set_up_test_repo
       puts tmp_svn_path
+      run_command('repo-svn', 'add', 'private', tmp_svn_path)
     end
   end
 end
