@@ -13,7 +13,9 @@ Our team had been using a in house fork of Cocoapods with svn, bzr, and hg spec-
 
     $ gem install cocoapods-repo-svn 
 
-## Usage
+# Usage
+
+## Commands
 
 Add
 
@@ -26,6 +28,15 @@ Update
 Remove
 
     $ pod repo-svn remove my-svn-repo 
+
+## Podfile integration
+
+To include your sources in the install phase of your project, do the following:
+```ruby
+plugin 'cocoapods-repo-svn', :sources => [
+        'https://svn.myrepository.com'
+    ]
+```
 
     
 ## Contributing
