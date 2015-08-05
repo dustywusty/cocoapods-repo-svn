@@ -37,7 +37,8 @@ module Pod
             config.repos_dir.mkpath
             Dir.chdir(config.repos_dir) do
               command = "checkout --non-interactive --trust-server-cert '#{@url}' #{@name}"
-              !svn(command)
+              #!svn(command)
+              `svn #{command}`
             end
             SourcesManager.check_version_information(dir) #todo: TEST ME
           end
@@ -103,7 +104,8 @@ module Pod
             UI.section "Updating spec repo `#{source.name}`" do
               Dir.chdir(source.repo) do
                 begin
-                  output = svn!('up --non-interactive --trust-server-cert')
+                  #output = svn('up --non-interactive --trust-server-cert')
+                  output = `svn up --non-interactive --trust-server-cert`
                   UI.puts output if show_output && !config.verbose?
                 rescue Informative => e
                   UI.warn 'CocoaPods was not able to update the ' \
@@ -150,7 +152,7 @@ module Pod
         # @return [Bool] Whether the given source is a SVN repo.
         #
         def svn_repo?(dir)
-          Dir.chdir(dir) { svn('info  >/dev/null 2>&1') }
+          Dir.chdir(dir) { `svn info > /dev/null` }
           $?.success?
         end
       end
