@@ -350,7 +350,7 @@ module Pod
               Dir.chdir(repo_dir) do
                 # only commit if modified
                 UI.puts "Committing changes"
-                UI.puts `svn add #{spec.name} 2> /dev/null`
+                UI.puts `svn add #{spec.name} --force 2> /dev/null`
                 UI.puts `svn commit -m "#{message}"`
               end
             end
