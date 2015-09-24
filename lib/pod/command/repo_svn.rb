@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'cocoapods_repo_svn'
 
 module Pod
   class Command
@@ -10,9 +11,9 @@ module Pod
       require 'pod/command/repo_svn/update'
 
       self.abstract_command = true
-      self.summary = 'Manage spec-repositories using subversion'
-
-      #-----------------------------------------------------------------------#
+      self.summary = <<-SUMMARY
+        Manage your Cocoapod spec repositories using subversion - v#{CocoapodsRepoSvn::VERSION}_#{CocoapodsRepoSvn::GITHASH}
+      SUMMARY
 
       extend Executable
       executable :svn
