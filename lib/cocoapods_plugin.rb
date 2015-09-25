@@ -29,7 +29,7 @@ def update_or_add_source(source)
         cmd = Pod::Command::RepoSvn::Add.new(argv)
     end
 
-    cmd.run() 
+    cmd.run()
 end
 
 # @param [String] url The URL of the SVN repository
