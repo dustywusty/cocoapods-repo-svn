@@ -81,7 +81,7 @@ module Pod
         #         The name of the source.
         #
         def svn_source_named(name)
-          specified_source = SourcesManager.aggregate.sources.find { |s| s.name == name }
+          specified_source = Config.instance.sources_manager.aggregate.sources.find { |s| s.name == name }
           unless specified_source
             raise Informative, "Unable to find the `#{name}` repo."
           end
