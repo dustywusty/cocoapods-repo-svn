@@ -68,7 +68,8 @@ module Pod
                   '`pod repo-svn update --verbose`'
                 end
               end
-              SourcesManager.check_version_information(source.repo)
+              # SourcesManager.check_version_information(source.repo)
+              Config.instance.sources_manager.sources([source.repo.basename.to_s]).each(&:verify_compatibility!) #todo: TEST ME
             end
           end
         end
@@ -93,7 +94,10 @@ module Pod
         # @return [Source] The list of the svn sources.
         #
         def svn_sources
-          SourcesManager.all.select do |source|
+          # SourcesManager.all.select do |source|
+          #   svn_repo?(source.repo)
+          # end
+          Config.instance.sources_manager.all.select do |source|
             svn_repo?(source.repo)
           end
         end

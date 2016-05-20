@@ -34,7 +34,8 @@ module Pod
               #!svn(command)
               `svn #{command}`
             end
-            SourcesManager.check_version_information(dir) #todo: TEST ME
+            # SourcesManager.check_version_information(dir) #todo: TEST ME
+            Config.instance.sources_manager.sources([dir.basename.to_s]).each(&:verify_compatibility!) #todo: TEST ME
           end
         end
       end

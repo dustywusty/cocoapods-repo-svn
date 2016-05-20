@@ -36,7 +36,8 @@ module Pod
             dirs = config.repos_dir.children.select {|c| c.directory?}
           end
           dirs.each do |dir|
-            SourcesManager.check_version_information(dir) #todo: test me
+            # SourcesManager.check_version_information(dir) #todo: test me
+            Config.instance.sources_manager.sources([dir.basename.to_s]).each(&:verify_compatibility!) #todo: TEST ME
             UI.puts "\nLinting spec repo `#{dir.realpath.basename}`\n".yellow
 
             validator = Source::HealthReporter.new(dir)
